@@ -2,6 +2,8 @@
 Here's a demo of a RESTFUL API, utilizing Lambda Expressions, Parallel Streams and Spring Boot. Test driven development concepts have been utilized along with complete a Javadoc, describing each method and class. 
 I've also built a SOAP API for example's sake in case a contract-driven webservice ever needs to be implemented.
 
+Prints can be found in the file Relevant Prints.pdf
+
 # services
 This API has 6 services as listed bellow:
  - fetchAllCourriers, which gets all courriers
