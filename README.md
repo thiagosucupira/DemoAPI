@@ -1,4 +1,4 @@
-# microAPI
+# DEMO API
 Here's a demo of a RESTFUL API, utilizing Lambda Expressions, Parallel Streams and Spring Boot. Test driven development concepts have been utilized along with complete a Javadoc, describing each method and class. 
 I've also built a SOAP API for example's sake in case a contract-driven webservice ever needs to be implemented.
 
