@@ -32,15 +32,7 @@ public class CourrierAppTests {
 	/** The courrier repo for the in-memory mock database. */
 	@Autowired
 	CourrierRepo courrierRepo;
-	
-	/**
-	 * Test list all courriers.
-	 */
-	@Test
-	public void testListAllCourriers() {
-		assertEquals(8, Arrays.asList(courrierRepo.findAll()).size());
-	}
-	
+		
 	/**
 	 * Test list all active courriers.
 	 */
@@ -49,6 +41,14 @@ public class CourrierAppTests {
 		assertEquals(6, courrierRepo.findAll().parallelStream().filter(c -> c.isActive()).collect(Collectors.toList()).size());
 	}
 	
+	/**
+	 * Test list all courriers.
+	 */
+	@Test
+	public void testListAllCourriers() {
+		assertEquals(8, Arrays.asList(courrierRepo.findAll()).size());
+	}
+
 	/**
 	 * Test fetch courrier by id.
 	 */
