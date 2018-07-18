@@ -29,7 +29,7 @@ public class CourrierAppTests {
 	public void contextLoads() {
 	}
 	
-	/** The courrier repo. */
+	/** The courrier repo for the in-memory mock database. */
 	@Autowired
 	CourrierRepo courrierRepo;
 	
@@ -38,8 +38,7 @@ public class CourrierAppTests {
 	 */
 	@Test
 	public void testListAllCourriers() {
-		List<Courrier> courriers = courrierRepo.findAll();
-		assertEquals(8, courriers.size());
+		assertEquals(8, Arrays.asList(courrierRepo.findAll()).size());
 	}
 	
 	/**
@@ -47,8 +46,7 @@ public class CourrierAppTests {
 	 */
 	@Test
 	public void testListAllActiveCourriers() {
-		List<Courrier> courriers = courrierRepo.findAll().parallelStream().filter(c -> c.isActive()).collect(Collectors.toList()); // Hello Java 8 :)
-		assertEquals(6, courriers.size());
+		assertEquals(6, courrierRepo.findAll().parallelStream().filter(c -> c.isActive()).collect(Collectors.toList()).size());
 	}
 	
 	/**
@@ -56,8 +54,7 @@ public class CourrierAppTests {
 	 */
 	@Test
 	public void testFetchCourrierById() {
-		Courrier courrier = courrierRepo.findOne(1L);
-		assertEquals("skippity@giggity.com", courrier.getEmail());
+		assertEquals("skippity@giggity.com", courrierRepo.findOne(1L).getEmail());
 	}
 	
 	/**
@@ -65,8 +62,16 @@ public class CourrierAppTests {
 	 */
 	@Test
 	public void testAddCourrier() {
-		Courrier courrier = new Courrier(9L, "Potato Head Groove Thing", "potato@timhortons.gov.ca", 5, true);
-		courrierRepo.save(courrier);
+		courrierRepo.save(new Courrier(9L, "Potato Head Groove Thing", "potato@gmail.com", 5, true));
+		assertEquals(8, courrierRepo.findAll().size());
+	}
+	
+	/**
+	 * Test delete courrier.
+	 */
+	@Test
+	public void testDeleteCourrier() {
+		courrierRepo.delete(new Courrier(9L, "Potato Head Groove Thing", "potato@gmail.com", 5, true));
 		assertEquals(8, courrierRepo.findAll().size());
 	}
 	
@@ -75,16 +80,6 @@ public class CourrierAppTests {
 	 */
 	@Test
 	public void testUpdateCourrier() {
-		// TODO fetch the updated Courrier and compare the updated fields
-	}
-	
-	/**
-	 * Test delete courrier.
-	 */
-	@Test
-	public void testDeleteCourrier() {
-		Courrier courrier = new Courrier(9L, "Potato Head Groove Thing", "potato@timhortons.gov.ca", 5, true);
-		courrierRepo.delete(courrier);
-		assertEquals(8, courrierRepo.findAll().size());
+		// TODO test if updated object matches the one in database, verify the recording went smoothly without exceptions etc
 	}
 }
