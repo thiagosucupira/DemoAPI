@@ -22,7 +22,7 @@ public class CourrierApp {
 		SpringApplication.run(CourrierApp.class, args); 
 		System.out.println("REST on air!");
 
-		Endpoint.publish("http://localhost:8888/SOAP/courriers", new CourrierResourceSOAP());
-		System.out.println("SOAP on air!");
+		//Endpoint.publish("http://localhost:8888/SOAP/courriers", new CourrierResourceSOAP());
+		//System.out.println("SOAP on air!");
 	}
 }
